@@ -43,7 +43,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   CategoryEntity? currentCategory;
   bool? isBudgetSet = false;
   bool? isDefault = false;
-  int? selectedColor;
+  int? selectedColor = Colors.red.value;
   int? selectedIcon;
 
   Future<void> _fetchCategoryFromId(

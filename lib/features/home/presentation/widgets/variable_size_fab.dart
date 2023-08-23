@@ -17,7 +17,7 @@ class HomeFloatingActionButtonWidget extends StatelessWidget {
   void _handleClick(BuildContext context, int page) {
     switch (page) {
       case 1:
-        context.goNamed(addAccountName);
+        context.goNamed(addAccountKjwName);
         break;
       case 6:
         context.pushNamed(recurringName);

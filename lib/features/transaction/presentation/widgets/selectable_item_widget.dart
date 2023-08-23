@@ -62,20 +62,20 @@ class ItemWidget extends StatelessWidget {
               const Spacer(),
               ListTile(
                 title: Text(
-                  title,
+                  subtitle ?? '',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: context.titleMedium?.copyWith(
                     color: context.onSurface,
                   ),
                 ),
-                subtitle: subtitle != null
-                    ? Text(
-                        subtitle!,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      )
-                    : null,
+                // subtitle: subtitle != null
+                //     ? Text(
+                //         subtitle!,
+                //         overflow: TextOverflow.ellipsis,
+                //         maxLines: 1,
+                //       )
+                //     : null,
               )
             ],
           ),

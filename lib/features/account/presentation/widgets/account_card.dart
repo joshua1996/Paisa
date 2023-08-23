@@ -125,7 +125,7 @@ class MobileAccountCard extends StatelessWidget {
               ListTile(
                 minVerticalPadding: 10,
                 title: Text(bankName),
-                subtitle: Text(cardHolder),
+                // subtitle: Text(cardHolder),
                 leading: Icon(cardType.icon),
                 trailing: onDelete != null
                     ? GestureDetector(

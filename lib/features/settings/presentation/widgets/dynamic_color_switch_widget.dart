@@ -23,7 +23,8 @@ class DynamicColorSwitchWidget extends StatelessWidget {
               defaultValue: false,
             ),
             onChanged: (value) {
-              Provider.of<Box<dynamic>>(context).put(dynamicThemeKey, value);
+              Provider.of<Box<dynamic>>(context, listen: false)
+                  .put(dynamicThemeKey, value);
               setState(() {});
             },
           ),

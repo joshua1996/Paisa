@@ -3,8 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/box_types.dart';
+import 'package:paisa/features/account/data/data_sources/default_account.dart';
+import 'package:paisa/features/account/data/data_sources/local/account_data_manager.dart';
+import 'package:paisa/features/account/data/model/account_model.dart';
+import 'package:paisa/features/category/data/data_sources/default_category.dart';
+import 'package:paisa/features/category/data/data_sources/local/category_data_source.dart';
+import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_set_name_widget.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_image_picker_widget.dart';
+import 'package:paisa/main.dart';
 import 'package:provider/provider.dart';
 
 class UserOnboardingPage extends StatefulWidget {
@@ -21,6 +29,13 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
   final _formState = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   int currentIndex = 0;
+  final List<CategoryModel> defaultCategoryModels = defaultCategoriesData;
+  final List<AccountModel> defaultAccountModels = defaultAccountsData();
+
+  final LocalCategoryManager categoryDataSource = getIt.get();
+  final LocalAccountManager accountDataSource = getIt.get();
+
+  final settings = getIt.get<Box<dynamic>>(instanceName: BoxType.settings.name);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +68,8 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
               ),
               const Spacer(),
               FloatingActionButton.extended(
-                onPressed: () {
+                heroTag: null,
+                onPressed: () async {
                   if (currentIndex == 0) {
                     if (_formState.currentState!.validate()) {
                       Provider.of<Box<dynamic>>(context, listen: false)
@@ -70,11 +86,23 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
                         Provider.of<Box<dynamic>>(context, listen: false)
                             .get(userImageKey, defaultValue: '');
                     if (image.isEmpty) {
-                      Provider.of<Box<dynamic>>(context, listen: false)
-                          .put(userImageKey, 'no-image')
-                          .then((value) => context.go(categorySelectorPath));
-                    } else {
-                      context.go(categorySelectorPath);
+                      await Provider.of<Box<dynamic>>(context, listen: false)
+                          .put(userImageKey, 'no-image');
+                    }
+                    for (var model in defaultCategoryModels) {
+                      categoryDataSource.add(model);
+                    }
+                    await settings.put(userCategorySelectorKey, false);
+                    for (var model in defaultAccountModels) {
+                      accountDataSource.add(model
+                        ..name = settings.get(
+                          userNameKey,
+                          defaultValue: model.name,
+                        ));
+                    }
+                    await settings.put(userAccountSelectorKey, false);
+                    if (mounted) {
+                      context.go(countrySelectorPath);
                     }
                   }
                 },

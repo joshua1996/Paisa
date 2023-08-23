@@ -26,6 +26,13 @@ class _AccountSelectorPageState extends State<AccountSelectorPage> {
   final List<AccountModel> defaultModels = defaultAccountsData();
 
   Future<void> saveAndNavigate() async {
+    for (var model in defaultModels) {
+      dataSource.add(model
+        ..name = settings.get(
+          userNameKey,
+          defaultValue: model.name,
+        ));
+    }
     await settings.put(userAccountSelectorKey, false);
     if (mounted) {
       context.go(countrySelectorPath);

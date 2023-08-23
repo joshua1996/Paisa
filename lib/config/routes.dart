@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/presentation/pages/account_transactions_page.dart';
+import 'package:paisa/features/account/presentation/pages/add/add_account_kjw_page.dart';
 import 'package:paisa/features/account/presentation/pages/add/add_account_page.dart';
 import 'package:paisa/features/account/presentation/pages/selector/account_selector_page.dart';
 import 'package:paisa/features/category/presentation/pages/add/add_category_page.dart';
@@ -168,10 +169,26 @@ final GoRouter goRouter = GoRouter(
           },
         ),
         GoRoute(
+          name: addAccountKjwName,
+          path: addAccountKjwPath,
+          builder: (BuildContext context, GoRouterState state) {
+            return const AddAccountKjwPage();
+          },
+        ),
+        GoRoute(
           name: editAccountName,
           path: editAccountPath,
           builder: (BuildContext context, GoRouterState state) {
             return AddAccountPage(
+              accountId: state.pathParameters['aid'],
+            );
+          },
+        ),
+        GoRoute(
+          name: editAccountKjwName,
+          path: editAccountKjwPath,
+          builder: (BuildContext context, GoRouterState state) {
+            return AddAccountKjwPage(
               accountId: state.pathParameters['aid'],
             );
           },

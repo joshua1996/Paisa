@@ -53,38 +53,43 @@ class _SearchPageState extends State<SearchPage> {
                   onPressed: () async {
                     final Map<String, dynamic> result =
                         await showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      isDismissible: true,
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width >= 700
-                            ? 700
-                            : double.infinity,
-                      ),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
-                      ),
-                      builder: (context) {
-                        return DraggableScrollableSheet(
-                          initialChildSize: 0.4,
-                          minChildSize: 0.2,
-                          maxChildSize: 0.95,
-                          expand: false,
-                          builder: (context, scrollController) {
-                            return FilterWidget(
-                              scrollController,
-                              selectedAccount:
-                                  searchCubitCubit.selectedAccountId,
-                              selectedCategory:
-                                  searchCubitCubit.selectedCategoryId,
-                            );
-                          },
-                        );
-                      },
-                    );
+                              context: context,
+                              isScrollControlled: true,
+                              isDismissible: true,
+                              constraints: BoxConstraints(
+                                maxWidth:
+                                    MediaQuery.of(context).size.width >= 700
+                                        ? 700
+                                        : double.infinity,
+                              ),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
+                                ),
+                              ),
+                              builder: (context) {
+                                return DraggableScrollableSheet(
+                                  initialChildSize: 0.4,
+                                  minChildSize: 0.2,
+                                  maxChildSize: 0.95,
+                                  expand: false,
+                                  builder: (context, scrollController) {
+                                    return FilterWidget(
+                                      scrollController,
+                                      selectedAccount:
+                                          searchCubitCubit.selectedAccountId,
+                                      selectedCategory:
+                                          searchCubitCubit.selectedCategoryId,
+                                    );
+                                  },
+                                );
+                              },
+                            ) ??
+                            {
+                              'account': [].cast<int>(),
+                              'category': [].cast<int>(),
+                            };
                     searchCubitCubit.selectedAccountId = result['account'];
                     searchCubitCubit.selectedCategoryId = result['category'];
                     searchCubitCubit

@@ -103,7 +103,7 @@ class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
                         },
                         onTap: () {
                           context.pushNamed(
-                            editAccountName,
+                            editAccountKjwName,
                             pathParameters: <String, String>{
                               'aid': account.superId.toString()
                             },

@@ -37,6 +37,9 @@ class _CategorySelectorPageState extends State<CategorySelectorPage> {
   }
 
   Future<void> saveAndNavigate() async {
+    for (var model in defaultModels) {
+      dataSource.add(model);
+    }
     await settings.put(userCategorySelectorKey, false);
     if (mounted) {
       context.go(accountSelectorPath);

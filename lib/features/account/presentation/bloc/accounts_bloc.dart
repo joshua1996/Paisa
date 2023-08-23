@@ -36,7 +36,7 @@ class AccountBloc extends Bloc<AccountsEvent, AccountState> {
     on<FetchAccountAndExpenseFromIdEvent>(_fetchAccountAndExpensesFromId);
   }
 
-  String? accountHolderName;
+  String? accountHolderName = 'defaultAccountHolderName';
   String? accountName;
   String? accountNumber;
   final AddAccountUseCase addAccountUseCase;
@@ -47,7 +47,7 @@ class AccountBloc extends Bloc<AccountsEvent, AccountState> {
   final GetCategoryUseCase getCategoryUseCase;
   final GetTransactionsByAccountIdUseCase getTransactionsByAccountIdUseCase;
   double? initialAmount;
-  int? selectedColor;
+  int? selectedColor = Colors.red.value;
   CardType selectedType = CardType.cash;
   final UpdateAccountUseCase updateAccountUseCase;
 

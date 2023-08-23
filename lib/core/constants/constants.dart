@@ -113,3 +113,9 @@ const iconPickerPath = 'icon-picker';
 
 const userOnboardingName = 'onboarding';
 const userOnboardingPath = '/onboarding';
+
+const addAccountKjwPath = 'add-account-kjw';
+const addAccountKjwName = 'add-account-kjw';
+
+const editAccountKjwPath = 'edit-account-kjw/:aid';
+const editAccountKjwName = 'edit-account-kjw';
