@@ -51,7 +51,8 @@ dependencies:
   share_plus: ^7.0.2
   url_launcher: ^6.1.7
   url_strategy: ^0.2.0
-
+  flutter_simple_calculator:
+  
 dev_dependencies:
   build_runner: ^2.3.2
   change_app_package_name: any

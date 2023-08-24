@@ -23,7 +23,7 @@ class SelectedAccount extends StatelessWidget {
         final accounts = value.values.toEntities();
         if (accounts.isEmpty) {
           return ListTile(
-            onTap: () => context.pushNamed(addAccountPath),
+            onTap: () => context.pushNamed(addAccountKjwPath),
             title: Text(context.loc.addAccountEmptyTitle),
             subtitle: Text(context.loc.addAccountEmptySubTitle),
             trailing: const Icon(Icons.keyboard_arrow_right),
@@ -102,7 +102,7 @@ class AccountSelectedItem extends StatelessWidget {
                   selected: false,
                   title: context.loc.addNew,
                   icon: MdiIcons.plus.codePoint,
-                  onPressed: () => context.pushNamed(addAccountPath),
+                  onPressed: () => context.pushNamed(addAccountKjwPath),
                 );
               } else {
                 final AccountEntity account = accounts[index - 1];

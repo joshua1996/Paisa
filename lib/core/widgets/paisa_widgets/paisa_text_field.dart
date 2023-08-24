@@ -9,6 +9,7 @@ class PaisaTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.none,
     this.validator,
     this.onChanged,
+    this.onTap,
     this.enabled = true,
     this.maxLength,
     this.maxLines,
@@ -20,6 +21,7 @@ class PaisaTextFormField extends StatelessWidget {
 
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final Function()? onTap;
   final TextEditingController controller;
   final String? counterText;
   final bool? enabled;
@@ -48,6 +50,7 @@ class PaisaTextFormField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       inputFormatters: inputFormatters,
+      onTap: onTap,
     );
   }
 }

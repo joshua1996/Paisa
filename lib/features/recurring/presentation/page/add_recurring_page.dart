@@ -157,7 +157,7 @@ class SelectedAccount extends StatelessWidget {
         final accounts = value.values.toEntities();
         if (accounts.isEmpty) {
           return ListTile(
-            onTap: () => context.pushNamed(addAccountPath),
+            onTap: () => context.pushNamed(addAccountKjwPath),
             title: Text(context.loc.addAccountEmptyTitle),
             subtitle: Text(context.loc.addAccountEmptySubTitle),
             trailing: const Icon(Icons.keyboard_arrow_right),
@@ -227,7 +227,7 @@ class _AccountSelectedWidgetState extends State<AccountSelectedWidget> {
               selected: false,
               title: 'Add New',
               icon: MdiIcons.plus.codePoint,
-              onPressed: () => context.pushNamed(addAccountPath),
+              onPressed: () => context.pushNamed(addAccountKjwPath),
             );
           } else {
             final AccountEntity account = widget.accounts[index - 1];
