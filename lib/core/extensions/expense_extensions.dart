@@ -68,7 +68,9 @@ extension ExpenseModelsHelper on Iterable<TransactionModel> {
 
   List<TransactionEntity> toEntities() {
     return map((expenseModel) => expenseModel.toEntity())
-        .sortedBy<DateTime>((element) => element.time!);
+        .sortedBy<DateTime>((element) => element.time!)
+        .reversed
+        .toList();
   }
 
   List<TransactionEntity> budgetOverView(TransactionType transactionType) =>

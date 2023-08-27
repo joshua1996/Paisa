@@ -19,26 +19,6 @@ class TransactionAmountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var calc = SimpleCalculator(
-      value: double.parse(controller.text),
-      hideExpression: false,
-      hideSurroundingBorder: true,
-      autofocus: true,
-      onChanged: (key, value, expression) {
-        if (kDebugMode) {
-          print('$key\t$value\t$expression');
-        }
-        if (key == '=') {
-          controller.text = value.toString();
-          context.pop();
-        }
-      },
-      onTappedDisplay: (value, details) {
-        if (kDebugMode) {
-          print('$value\t${details.globalPosition}');
-        }
-      },
-    );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: PaisaTextFormField(
@@ -71,6 +51,29 @@ class TransactionAmountWidget extends StatelessWidget {
           }
         },
         onTap: () {
+          var calc = SimpleCalculator(
+            value: controller.text == '' ? 0 : double.parse(controller.text),
+            hideExpression: false,
+            hideSurroundingBorder: true,
+            autofocus: true,
+            onChanged: (key, value, expression) {
+              if (kDebugMode) {
+                print('$key\t$value\t$expression');
+              }
+              if (key == '=') {
+                double? amount = double.tryParse(value?.toString() ?? '0');
+                BlocProvider.of<TransactionBloc>(context).transactionAmount =
+                    amount;
+                controller.text = value.toString();
+                context.pop();
+              }
+            },
+            onTappedDisplay: (value, details) {
+              if (kDebugMode) {
+                print('$value\t${details.globalPosition}');
+              }
+            },
+          );
           showModalBottomSheet(
             isScrollControlled: true,
             context: context,
