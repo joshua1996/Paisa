@@ -17,6 +17,8 @@ class PaisaTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.counterText,
     this.textCapitalization = TextCapitalization.words,
+    this.autofocus = false,
+    this.focusNode,
   });
 
   final String? Function(String?)? validator;
@@ -32,6 +34,8 @@ class PaisaTextFormField extends StatelessWidget {
   final int? maxLength;
   final int? maxLines;
   final TextCapitalization textCapitalization;
+  final bool autofocus;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +55,8 @@ class PaisaTextFormField extends StatelessWidget {
       onChanged: onChanged,
       inputFormatters: inputFormatters,
       onTap: onTap,
+      autofocus: autofocus,
+      focusNode: focusNode,
     );
   }
 }
